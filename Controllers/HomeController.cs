@@ -8,4 +8,17 @@ public class HomeController : Controller
     {
         return View();
     }
+    public IActionResult ConfigurarJuego(){
+        return View();
+    }
+    public IActionResult Comenzar(string username,int dificultad,int categoria){
+        return View();
+    }
+    public IActionResult Jugar(){
+        return View();
+    }
+    [HttpPost]public IActionResult VerificarRespuesta(int idPregunta,int idRespuesta){
+        return View();
+    }
+    
 }
