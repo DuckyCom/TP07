@@ -2,14 +2,16 @@
 
 namespace TP07.Controllers;
 
+
 public class HomeController : Controller
 {
     public IActionResult Index()
     {
-        return View();
+        return View("Index");
     }
     public IActionResult ConfigurarJuego(){
-        return View();
+        
+       return View();
     }
     public IActionResult Comenzar(string username,int dificultad,int categoria){
         return View();
