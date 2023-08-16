@@ -23,23 +23,23 @@ class Juego{
         _respuestas = BD.ObtenerRespuestas(_preguntas);
     }
    
-    public Pregunta ObtenerProximaPregunta(){
-        Pregunta preguntarnd;
-        Random rnd = new Random();
-        int num = rnd.Next(1, _preguntas.Count());
-        return preguntarnd = _preguntas[num];
+    public Pregunta ObtenerProximaPregunta(List<Pregunta> listaPreguntas){
+    Pregunta preguntarnd;
+    //Hacer un numero que se guarde para saber el orden de lista
+    return preguntarnd = preguntasAleatorias[0];
+     
 
     }
-    public void ObtenerProximasRespuestas(int idPregunta){
+
+    public Respuesta ObtenerProximasRespuestas(int idPregunta){
         Pregunta p = ObtenerProximaPregunta();
-        int num = _preguntas.IndexOf(p);
-        
-
-
+        idPregunta = _preguntas.IndexOf(p);
+        Respuesta respuestarnd;
+        return respuestarnd = _respuestas[idPregunta];
     }
     public bool VerificarRespuesta(string Respuesta){
         bool Correcto = true;
-        if (/* me acuerdo de como hacerlo con array que era con [i], como es con list */== Respuesta)
+        if ( == Respuesta)
         {
             _puntajeActual++;
             _cantidadPreguntasCorrectas++;
@@ -51,5 +51,11 @@ class Juego{
         }
         //falta eliminar por parametro la pregunta [se elimina independientemente del resultado]
         return Correcto;
+    }
+
+    public List<Pregunta> aleatorizarList(List<Pregunta> _preguntas){
+           Random rnd = new Random();
+           List<Pregunta> randomized = _preguntas.OrderBy(item => rnd.Next()).ToList();
+           return randomized;
     }
 }

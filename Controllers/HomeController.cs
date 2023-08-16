@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-
+using TP07.Models;
 namespace TP07.Controllers;
 
 
@@ -10,7 +10,7 @@ public class HomeController : Controller
         return View("Index");
     }
     public IActionResult ConfigurarJuego(){
-        
+        ViewBag.ConfigurarJuego = Juego.InicializarJuego();
        return View();
     }
     public IActionResult Comenzar(string username,int dificultad,int categoria){
