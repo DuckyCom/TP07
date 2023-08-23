@@ -11,7 +11,7 @@ public class HomeController : Controller
     }
     public IActionResult ConfigurarJuego(){
         ViewBag.ConfigurarJuego = Juego.InicializarJuego();
-       return View();
+       return View("Juego");
     }
     public IActionResult Comenzar(string username,int dificultad,int categoria){
         return View();
@@ -19,7 +19,7 @@ public class HomeController : Controller
     public IActionResult Jugar(){
         return View();
     }
-    [HttpPost]public IActionResult VerificarRespuesta(int idPregunta,int idRespuesta){
+    [HttpPost]public IActionResult VerificarRespuesta(int idPregunta,Respuesta respuesta){
         return View();
     }
     

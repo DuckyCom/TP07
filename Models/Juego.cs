@@ -6,6 +6,7 @@ class Juego{
     private List<Pregunta> _preguntas{get;set;}
     private List<Respuesta> _respuestas{get;set;}
     public void InicializarJuego(){
+        Juego configurar;
         _username = null;
         _puntajeActual = 0;
         _cantidadPreguntasCorrectas = 0;
@@ -23,39 +24,32 @@ class Juego{
         _respuestas = BD.ObtenerRespuestas(_preguntas);
     }
    
-    public Pregunta ObtenerProximaPregunta(List<Pregunta> listaPreguntas){
-    Pregunta preguntarnd;
-    //Hacer un numero que se guarde para saber el orden de lista
-    return preguntarnd = preguntasAleatorias[0];
-     
-
+    public Pregunta ObtenerProximaPregunta(){
+        Pregunta preguntarnd;
+        return preguntarnd = _preguntas[0];
     }
-
-    public Respuesta ObtenerProximasRespuestas(int idPregunta){
-        Pregunta p = ObtenerProximaPregunta();
-        idPregunta = _preguntas.IndexOf(p);
-        Respuesta respuestarnd;
-        return respuestarnd = _respuestas[idPregunta];
-    }
-    public bool VerificarRespuesta(string Respuesta){
-        bool Correcto = true;
-        if ( == Respuesta)
+    public List<Respuesta> ObtenerProximasRespuestas(int idPregunta){
+        List<Respuesta> respuestas = new List<Respuesta>{};
+        foreach (var item in _respuestas)
         {
-            _puntajeActual++;
-            _cantidadPreguntasCorrectas++;
-            Correcto = true;
+            if (item.IdPregunta == idPregunta)
+            {
+                respuestas.Add(item);
+            }
         }
-        else
-        {
-            Correcto = false;
-        }
-        //falta eliminar por parametro la pregunta [se elimina independientemente del resultado]
-        return Correcto;
+        return respuestas;
     }
-
-    public List<Pregunta> aleatorizarList(List<Pregunta> _preguntas){
-           Random rnd = new Random();
-           List<Pregunta> randomized = _preguntas.OrderBy(item => rnd.Next()).ToList();
-           return randomized;
+    public bool VerificarRespuesta(int idPregunta, Respuesta respuesta){
+        bool v;
+        if(respuesta.Correcta){
+            _puntajeActual+=5;
+            _preguntas.RemoveAt(0);
+            v = true;
+        }
+        else{
+            v = false;
+        }
+        return v;
     }
 }
+
